@@ -19,7 +19,6 @@ public class CharacterInputScript : MonoBehaviour {
     private void Start()
     {
         this.character = this.GetComponent<CharacterScript>();
- 
         this.mainCamera = Camera.main;
     }
  

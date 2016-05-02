@@ -45,6 +45,7 @@ public class CharacterScript : MonoBehaviour
     	}
     }
 
+
     public delegate void Death();
  
     public void SetDeathFunction(Death d) {
