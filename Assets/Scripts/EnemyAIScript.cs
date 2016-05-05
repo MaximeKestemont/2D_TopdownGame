@@ -9,6 +9,7 @@ public class EnemyAIScript : MonoBehaviour {
 		following
 	}
  
+ 	// TODO move those variables into a class specific to the character
 	public float timeToChangeDirection = 5.0f;				// time in seconds till the character determines a new heading
 	public int damage = 5;									// amount of damage to do to the player
  	public float attackSpeed = 1.0f;
@@ -108,8 +109,8 @@ public class EnemyAIScript : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D other) {
   
 		if ( other.gameObject.tag == "Player" && this.attackSpeedTimer > this.attackSpeed ) {
-			other.gameObject.GetComponent<CharacterScript>().AdjustHealth( -1 * this.damage );		//deal some damage!
-			this.attackSpeedTimer=0.0f;
+			other.gameObject.GetComponent<CharacterScript>().AdjustHealth( -1 * this.damage );
+			this.attackSpeedTimer = 0.0f;
 		}
  
  		// create a new heading after hitting something

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class TimedSpawner : MonoBehaviour {
 
@@ -9,7 +10,7 @@ public class TimedSpawner : MonoBehaviour {
 	public int maxObjects = 5;
 
 	private float internalTimer = 0.0f;
-	private int spawnedObjects = 0;
+	private List<GameObject> spawnedObjects = new List<GameObject>();
 
 
 	void Start () {
@@ -21,7 +22,7 @@ public class TimedSpawner : MonoBehaviour {
     	
     	this.internalTimer += Time.deltaTime;
  	
-    	if ( this.internalTimer > this.timeToSpawn && this.spawnedObjects < this.maxObjects ) {
+    	if ( this.internalTimer > this.timeToSpawn && this.spawnedObjects.Count < this.maxObjects ) {
     	    this.Spawn();
     	    this.internalTimer = 0.0f;
     	}
@@ -34,9 +35,31 @@ public class TimedSpawner : MonoBehaviour {
     ========================
     */
 	private void Spawn() {
-		spawnedObjects += 1;
-    	Instantiate( this.objectToSpawn,
-        			 this.transform.position,
-        			 Quaternion.identity );
+		//spawnedObjects += 1;
+    	GameObject obj = (GameObject) Instantiate( this.objectToSpawn,
+    									 		   this.transform.position,
+        			 					 		   Quaternion.identity );
+    	spawnedObjects.Add(obj);
     }
+
+
+    /*
+    ========================
+    OnTriggerEnter2D
+    ========================
+    */
+	private void OnTriggerEnter2D(Collider2D other) {
+
+	    if (other.gameObject.tag == "Player") {
+	    	// Destroy the spawned spiders
+	        foreach (GameObject obj in spawnedObjects) {
+	            Destroy(obj);
+	        }
+	 
+	        other.GetComponent<HeroScript>().AdjustDestroyedWebs(1);
+	 
+	        // destroy the spawner
+	        Destroy(this.gameObject);
+	    }
+	}
 }
