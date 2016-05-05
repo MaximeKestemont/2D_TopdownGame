@@ -74,7 +74,7 @@ public class CharacterScript : MonoBehaviour
         // This ensures smooth movement
         this.cachedRigidBody2D.velocity = new Vector2(movement.x * maxSpeed, movement.y * maxSpeed);
 
-		//set the speed variable in the animation component to ensure proper state
+		// set the speed variable in the animation component to ensure proper state
 		speed = Mathf.Abs(movement.x) + Mathf.Abs(movement.y);
         this.animator.SetFloat("Speed", speed);
 

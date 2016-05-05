@@ -9,6 +9,9 @@ public class HeroScript : MonoBehaviour {
 
 	public int websToDestroy = 5;				// number of webs to destroy // TODO to remove
  
+ 	private bool speedToRestore = false;
+ 	private float speedResetTimer = 1.0f;
+ 	private float oldSpeed;
 	private CharacterScript character;
 	private int destroyedSpiderWebs = 0;		// number of webs destroyed
  
@@ -16,6 +19,8 @@ public class HeroScript : MonoBehaviour {
 
 
 	private void Awake() {
+		ResourceManager.RegisterMainPlayer(this);
+
 		this.character = this.GetComponent<CharacterScript>();
 		character.SetDeathFunction( () => {
             Application.LoadLevel(Application.loadedLevelName); 
@@ -33,8 +38,19 @@ public class HeroScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
+		// If currently in speed boost, adjust the timer and restore old speed if needed
+		if ( speedToRestore ) {
+			this.speedResetTimer -= Time.deltaTime;
+			if ( speedResetTimer < 0.0 ) {
+				character.maxSpeed = oldSpeed;
+				speedResetTimer = 1.0f;
+				speedToRestore = false;
+			}
+		}
+		
 	}
+
 
 
     /*
@@ -42,12 +58,16 @@ public class HeroScript : MonoBehaviour {
     OnCollisionEnter2D
     ========================
     */
-	private void OnCollisionEnter2D(Collision2D other)
-	{
-	    if (other.gameObject.tag == "Enemy") {
-	        other.gameObject.GetComponent<CharacterScript>().AdjustHealth(-1 * this.damage);
-	    }
-	}
+    public void AdjustSpeed(float speedPercentage, bool temporary, float duration = 0.0f) {
+    	if ( temporary ) {
+    		oldSpeed = character.maxSpeed;
+    		character.maxSpeed *= speedPercentage;
+    		speedToRestore = true;
+    		speedResetTimer = duration;
+    	} else {
+    		character.maxSpeed *= speedPercentage;
+    	}
+    }
 
 
     /*
@@ -79,4 +99,19 @@ public class HeroScript : MonoBehaviour {
 	{
 	    this.winFunction = function;
 	}
+
+
+
+    /*
+    ========================
+    OnCollisionEnter2D
+    ========================
+    */
+	private void OnCollisionEnter2D(Collision2D other)
+	{
+	    if (other.gameObject.tag == "Enemy") {
+	        other.gameObject.GetComponent<CharacterScript>().AdjustHealth(-1 * this.damage);
+	    }
+	}
+
 }
