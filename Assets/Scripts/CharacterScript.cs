@@ -6,7 +6,7 @@ public class CharacterScript : MonoBehaviour
 {
     
     public float maxSpeed = 5.0f;					// max speed of character
-	public float facingAngleAdjustment = -90.0f;	//adjustment for rotation based on sprite starting orientation
+	public float facingAngleAdjustment = -90.0f;	// adjustment for rotation based on sprite starting orientation
 	public int maxHealth = 100;
 	public Texture2D progressBarFull;
 	public Texture2D progressBarEmpty;
@@ -151,6 +151,27 @@ public class CharacterScript : MonoBehaviour
     */
 	public float GetHealth() {
 	    return this.health;
+	}
+
+
+    /*
+    ========================
+    GetHealth
+    ========================
+    */
+    // TODO character should be split between player and ennemies, so that the collision can be specific to each. Currently a player
+    // is not suffering from collisions because he is not tagged as an enemy.
+	public void OnParticleCollision(GameObject other) {
+
+		// TODO temporary code, need to be refactor so that particles have a ParticleScript attached, with a variable.
+		// Then, the check here can be done on this variable (with enum value), to check if this is coming from a flamethrower.
+		// OR, the collision can be handled in the particle script directly, so that it does not need to be inherited/rewritten for 
+		// every enemy classes.
+		if (other.name == "flamethrower_2") {
+			AdjustHealth(-1);
+		}
+		
+
 	}
  
 }

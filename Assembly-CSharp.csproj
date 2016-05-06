@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\CharacterInputScript.cs" />
      <Compile Include="Assets\Scripts\CharacterScript.cs" />
      <Compile Include="Assets\Scripts\EnemyAIScript.cs" />
+     <Compile Include="Assets\Scripts\FlameThrowerTest.cs" />
      <Compile Include="Assets\Scripts\FollowTargetScript.cs" />
      <Compile Include="Assets\Scripts\HUD.cs" />
      <Compile Include="Assets\Scripts\HeroScript.cs" />
