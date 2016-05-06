@@ -17,6 +17,7 @@ public class HeroScript : MonoBehaviour {
  
 	private Action winFunction = () => {};		// function to call when the level is finished
 
+	private ParticleSystem flamethrower;		// TODO to move in a separate script at one point
 
 	private void Awake() {
 		ResourceManager.RegisterMainPlayer(this);
@@ -29,6 +30,9 @@ public class HeroScript : MonoBehaviour {
         this.SetFinishLevelFunction( () => {
         	Application.LoadLevel("Scene1");
    		});
+
+   		this.flamethrower = this.GetComponentInChildren<ParticleSystem>();
+   		this.flamethrower.enableEmission = false;
 	}
 
 	// Use this for initialization
@@ -95,11 +99,19 @@ public class HeroScript : MonoBehaviour {
     SetFinishLevelFunction
     ========================
     */
-	public void SetFinishLevelFunction(Action function)
-	{
+	public void SetFinishLevelFunction(Action function) {
 	    this.winFunction = function;
 	}
 
+
+    /*
+    ========================
+    SetFinishLevelFunction
+    ========================
+    */
+	public void SetFlamethrowerEmitter(Boolean b) {
+	    this.flamethrower.enableEmission = b;
+	}
 
 
     /*
@@ -107,8 +119,7 @@ public class HeroScript : MonoBehaviour {
     OnCollisionEnter2D
     ========================
     */
-	private void OnCollisionEnter2D(Collision2D other)
-	{
+	private void OnCollisionEnter2D(Collision2D other) {
 	    if (other.gameObject.tag == "Enemy") {
 	        other.gameObject.GetComponent<CharacterScript>().AdjustHealth(-1 * this.damage);
 	    }

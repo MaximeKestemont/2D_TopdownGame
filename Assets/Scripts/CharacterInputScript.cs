@@ -52,6 +52,8 @@ public class CharacterInputScript : MonoBehaviour {
     // FixedUpdate is used instead of Update when dealing with Rigidbody.
     void FixedUpdate()
     {
+        // -------------------- MOVEMENT --------------------------
+
         Vector2 movement = new Vector2();
 
         // Can move with keyboard or mouse, mouse being the priority
@@ -66,6 +68,13 @@ public class CharacterInputScript : MonoBehaviour {
         this.heading = movement.normalized;
  
         character.Move(heading);
+
+        // ------------------ ATTACK ------------------------
+        if ( Input.GetButton("Space") ) {    // configured in the Input Manager
+            ResourceManager.MainPlayer.SetFlamethrowerEmitter(true);
+        } else {
+            ResourceManager.MainPlayer.SetFlamethrowerEmitter(false);
+        } 
 
     }
 }
