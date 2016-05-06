@@ -78,11 +78,13 @@ public class CharacterScript : MonoBehaviour
 		speed = Mathf.Abs(movement.x) + Mathf.Abs(movement.y);
         this.animator.SetFloat("Speed", speed);
 
-		// adjust the character orientation
-    	float angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg + facingAngleAdjustment;
-    	if ( speed > 0.0f ) {
-        	//rotate by angle around the z axis.
-        	this.cachedTransform.rotation = Quaternion.AngleAxis(angle, new Vector3(0, 0, 1));
+		// adjust the character orientation if moving
+		if (movement.magnitude > 0) {
+    		float angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg + facingAngleAdjustment;
+    		if ( speed > 0.0f ) {
+        		// rotate by angle around the z axis
+        		this.cachedTransform.rotation = Quaternion.AngleAxis(angle, new Vector3(0, 0, 1));
+    		}
     	}
     }
 
