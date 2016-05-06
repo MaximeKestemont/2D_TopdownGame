@@ -85,6 +85,9 @@ public class CharacterScript : MonoBehaviour
         		// rotate by angle around the z axis
         		this.cachedTransform.rotation = Quaternion.AngleAxis(angle, new Vector3(0, 0, 1));
     		}
+    	} else {
+    		// this is a bit of a hack. Without it, the character seems to rotate indefinitely when hitting a wall
+    		this.cachedRigidBody2D.angularVelocity = 0;
     	}
     }
 
