@@ -60,7 +60,7 @@ public class CharacterInputScript : MonoBehaviour {
             Vector2 moveToward = Camera.main.ScreenToWorldPoint( Input.mousePosition );
             movement = moveToward - currentPosition;
         } else {
-            movement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         }
         
         this.heading = movement.normalized;
