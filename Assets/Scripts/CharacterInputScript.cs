@@ -41,8 +41,6 @@ public class CharacterInputScript : MonoBehaviour {
         }
         */
     }
- 
-
 
     /*
     ========================
