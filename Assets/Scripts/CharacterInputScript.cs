@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
  
 [RequireComponent(typeof(CharacterScript))]
@@ -51,7 +51,6 @@ public class CharacterInputScript : MonoBehaviour {
     void FixedUpdate()
     {
         // -------------------- MOVEMENT --------------------------
-
         Vector2 movement = new Vector2();
 
         // Can move with keyboard or mouse, mouse being the priority
