@@ -1,4 +1,4 @@
-﻿/*using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -83,7 +83,7 @@ public class Inventory : MonoBehaviour
 
     InputManager inputManagerDatabase;
 
-    // event delegates for consuming, gearing
+    //event delegates for consuming, gearing
     public delegate void ItemDelegate(Item item);
     public static event ItemDelegate ItemConsumed;
     public static event ItemDelegate ItemEquip;
@@ -95,6 +95,10 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
+        // Register the inventory to the ResourceManager
+        ResourceManager.RegisterInventory(this);
+
+
         if (transform.GetComponent<Hotbar>() == null)
             this.gameObject.SetActive(false);
 
@@ -894,4 +898,3 @@ public class Inventory : MonoBehaviour
         }
     }
 }
-*/

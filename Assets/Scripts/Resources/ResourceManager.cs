@@ -22,6 +22,17 @@ public static class ResourceManager {
 
     /*
     ========================
+    Inventory
+    ========================
+    */
+    private static Inventory inventory;
+    public static Inventory Inventory { get { return inventory; } }
+    public static void RegisterInventory(Inventory inv) {
+        inventory = inv; 
+    }
+
+    /*
+    ========================
     Drugs
     ========================
     */
@@ -31,7 +42,9 @@ public static class ResourceManager {
 	public static void StoreDrugs(Sprite drug1, Sprite drug2) {
 		drug1 = drug1; 
 		drug2 = drug2;
-	}	
+	}
+
+    
 
 
 
