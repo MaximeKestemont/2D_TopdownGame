@@ -3,19 +3,7 @@ using System.Collections;
 
 public class GenericItem : MonoBehaviour {
 
-
 	public int idItem;
-	
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
 
     /*
     ========================
@@ -24,6 +12,7 @@ public class GenericItem : MonoBehaviour {
     */
 	private void OnTriggerEnter2D(Collider2D other) {
 
+		// Collect the item when colliding with it
 	    if (other.gameObject.tag == "Player") {
 	    	
 	    	ResourceManager.Inventory.addItemToInventory(idItem);
