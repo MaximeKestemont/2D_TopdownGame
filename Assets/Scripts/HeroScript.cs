@@ -4,6 +4,9 @@ using System;
 
 public class HeroScript : MonoBehaviour {
 
+	// Composition links
+	private CharacterScript character;
+	
 	// TODO move to character
 	public int damage = 10;
 
@@ -12,7 +15,6 @@ public class HeroScript : MonoBehaviour {
  	private bool speedToRestore = false;
  	private float speedResetTimer = 1.0f;
  	private float oldSpeed;
-	private CharacterScript character;
 	private int destroyedSpiderWebs = 0;		// number of webs destroyed
  
 	private Action winFunction = () => {};		// function to call when the level is finished
