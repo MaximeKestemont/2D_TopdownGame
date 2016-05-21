@@ -93,6 +93,7 @@
      <Compile Include="Assets\Scripts\HeroScript.cs" />
      <Compile Include="Assets\Scripts\Inventory\Inventory.cs" />
      <Compile Include="Assets\Scripts\Items\GenericItem.cs" />
+     <Compile Include="Assets\Scripts\MovingBox.cs" />
      <Compile Include="Assets\Scripts\Particles\FlameThrowerTest.cs" />
      <Compile Include="Assets\Scripts\Particles\ParticleSortingLayer.cs" />
      <Compile Include="Assets\Scripts\Particles\PoisonScript.cs" />
