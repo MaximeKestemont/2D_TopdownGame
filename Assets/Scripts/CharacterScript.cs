@@ -163,6 +163,7 @@ public class CharacterScript : MonoBehaviour
     // is not suffering from collisions because he is not tagged as an enemy.
 	public void OnParticleCollision(GameObject other) {
 
+        Debug.Log("COLLISION");
 		// TODO temporary code, need to be refactor so that particles have a ParticleScript attached, with a variable.
 		// Then, the check here can be done on this variable (with enum value), to check if this is coming from a flamethrower.
 		// OR, the collision can be handled in the particle script directly, so that it does not need to be inherited/rewritten for 
@@ -170,8 +171,8 @@ public class CharacterScript : MonoBehaviour
 		if (other.name == "flamethrower_2") {
 			AdjustHealth(-1);
 		}
-		
-
 	}
+
+
  
 }

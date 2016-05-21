@@ -6,7 +6,7 @@ public class HeroScript : MonoBehaviour {
 
 	// Composition links
 	private CharacterScript character;
-	
+
 	// TODO move to character
 	public int damage = 10;
 
@@ -61,7 +61,7 @@ public class HeroScript : MonoBehaviour {
 
     /*
     ========================
-    OnCollisionEnter2D
+    AdjustSpeed
     ========================
     */
     public void AdjustSpeed(float speedPercentage, bool temporary, float duration = 0.0f) {
@@ -73,6 +73,16 @@ public class HeroScript : MonoBehaviour {
     	} else {
     		character.maxSpeed *= speedPercentage;
     	}
+    }
+
+
+    /*
+    ========================
+    AdjustHealth
+    ========================
+    */
+    public void AdjustHealth(int amount) {
+    	character.AdjustHealth(amount);
     }
 
 
@@ -126,5 +136,7 @@ public class HeroScript : MonoBehaviour {
 	        other.gameObject.GetComponent<CharacterScript>().AdjustHealth(-1 * this.damage);
 	    }
 	}
+
+
 
 }
