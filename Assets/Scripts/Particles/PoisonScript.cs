@@ -33,7 +33,7 @@ public class PoisonScript : MonoBehaviour {
         	// iterate through the particles which entered the trigger and make them red
 	
         	if ( numInside > 0 || numEnter > 0 ) {
-        		ResourceManager.MainPlayer.AdjustHealth(-1);
+        		ResourceManager.MainPlayer.InflictDamage(-1, false);		// poison does not care about invicible window
         	}
 	
         	// re-assign the modified particles back into the particle system

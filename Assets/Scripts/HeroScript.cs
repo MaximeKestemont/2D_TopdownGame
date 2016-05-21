@@ -12,9 +12,16 @@ public class HeroScript : MonoBehaviour {
 
 	public int websToDestroy = 5;				// number of webs to destroy // TODO to remove
  
+ 	// Invicible for a while when getting hurt 
+	private bool isInvincible = false;
+	private float invicibilityDuration = 1f;		
+	private float timeSpentInvincible;
+
+	// Related to drug 1
  	private bool speedToRestore = false;
  	private float speedResetTimer = 1.0f;
  	private float oldSpeed;
+
 	private int destroyedSpiderWebs = 0;		// number of webs destroyed
  
 	private Action winFunction = () => {};		// function to call when the level is finished
@@ -54,7 +61,18 @@ public class HeroScript : MonoBehaviour {
 				speedToRestore = false;
 			}
 		}
-		
+	
+		if (isInvincible) {
+			timeSpentInvincible += Time.deltaTime;
+		 
+		  	if (timeSpentInvincible < invicibilityDuration) {
+		    	float remainder = timeSpentInvincible % .3f;
+		    	GetComponent<Renderer>().enabled = remainder > .15f; 			// make the player blink every 0.15s
+		  	} else {
+		    	GetComponent<Renderer>().enabled = true;
+		    	isInvincible = false;
+		  	}
+		}
 	}
 
 
@@ -85,6 +103,25 @@ public class HeroScript : MonoBehaviour {
     	character.AdjustHealth(amount);
     }
 
+    /*
+    ========================
+    InflictDamage
+    ========================
+    */
+    // When parameter isInvincibleValid is set to true, the invicible window is taken into account.
+    // If not, then the player suffers damage even if he is in invicible window.
+    public void InflictDamage(int amount, bool isInvincibleValid) {
+    	
+    	if ( !isInvincible && isInvincibleValid) {
+    		isInvincible = true;
+    		timeSpentInvincible = 0;
+    		AdjustHealth(amount);
+    	} else 
+    	// This ignores the invicibity window, but does not reset the timer
+    	if ( !isInvincibleValid ) {
+    		AdjustHealth(amount);
+    	}
+    }
 
     /*
     ========================

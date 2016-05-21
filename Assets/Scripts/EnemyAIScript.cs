@@ -109,7 +109,7 @@ public class EnemyAIScript : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D other) {
   
 		if ( other.gameObject.tag == "Player" && this.attackSpeedTimer > this.attackSpeed ) {
-			other.gameObject.GetComponent<CharacterScript>().AdjustHealth( -1 * this.damage );
+			other.gameObject.GetComponent<HeroScript>().InflictDamage( -1 * this.damage, true );
 			this.attackSpeedTimer = 0.0f;
 		}
  
