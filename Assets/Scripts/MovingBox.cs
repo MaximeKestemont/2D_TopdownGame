@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// TODO to refactor. Should use the physic API (with the PushForce), instead of the check on the target. Especially as the moveSpeed
+// is not used anymore...
 public class MovingBox : MonoBehaviour {
 
 	public int distanceX = 2;				// distance moving in the X-axis when pushed
@@ -12,18 +14,20 @@ public class MovingBox : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		this.GetComponent<Rigidbody2D>().constraints = 
+			RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
+	   	
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 
 		if ( isMoving ) {
-			transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * moveSpeed);
 			
 			// If closer than the delta, then it will not move anymore
 			if ( Mathf.Abs(transform.position.magnitude - target.magnitude) < Time.deltaTime * moveSpeed ) {
 				isMoving = false;
+				this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
 			}
 		}
 
@@ -35,7 +39,7 @@ public class MovingBox : MonoBehaviour {
     ========================
     */
 	private void OnCollisionEnter2D(Collision2D other) {
-
+ 
 	    if (other.gameObject.tag == "Player" && isMoving == false) {
 
 	        Vector2 boxPosition =  this.transform.position;
@@ -51,14 +55,27 @@ public class MovingBox : MonoBehaviour {
 	        	} else {
 					target = new Vector2(boxPosition.x - distanceX, boxPosition.y);
 	        	}
+	        	this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY; 
+
 	        } else {
 	        	if ( diffY > 0 ) {		// if diffY > 0, this means that the player is on the top side of the box
 	        		target = new Vector2(boxPosition.x, boxPosition.y + distanceY);
 	        	} else {
 					target = new Vector2(boxPosition.x, boxPosition.y - distanceY);
 	        	}
+	        	this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionX; 
 	        }
 	        isMoving = true;
+
+	    } 
+	    
+	    // If colliding with something else than the player, stop moving.
+	    if (other.gameObject.tag != "Player") {
+
+	    	target = this.transform.position;
+	    	isMoving = false;
+	    	this.GetComponent<Rigidbody2D>().constraints = 
+	    		RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY; 
 	    }
 	}
 }
