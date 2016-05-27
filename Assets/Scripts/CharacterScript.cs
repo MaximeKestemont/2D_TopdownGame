@@ -19,6 +19,7 @@ public class CharacterScript : MonoBehaviour
     private float speed;							// current speed
     private int health = 100;
     private Vector2 healthScale;					// scale of the health bar
+    private bool isAttacking = false;              // used for animations
     
 
     // Death function
@@ -153,6 +154,24 @@ public class CharacterScript : MonoBehaviour
 	    return this.health;
 	}
 
+    /*
+    ========================
+    SetAttackingFlag
+    ========================
+    */
+    public void SetAttackingFlag(bool flag) {
+        this.isAttacking = flag;
+        this.animator.SetBool("isAttacking", flag);
+    }
+
+    /*
+    ========================
+    GetAttackingFlag
+    ========================
+    */
+    public bool GetAttackingFlag() {
+        return this.isAttacking;
+    }
 
     /*
     ========================
