@@ -60,7 +60,7 @@ public class FlameThrowerTest : MonoBehaviour {
         ps = GetComponent<ParticleSystem>();
     }
 
-    void OnParticleTrigger()
+	void OnParticleTrigger()
     {
         if (ps != null) {
 

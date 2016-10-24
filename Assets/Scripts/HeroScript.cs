@@ -21,12 +21,16 @@ public class HeroScript : MonoBehaviour {
  	private bool speedToRestore = false;
  	private float speedResetTimer = 1.0f;
  	private float oldSpeed;
+	public int drug1Level = 0;
 
 	private int destroyedSpiderWebs = 0;		// number of webs destroyed
  
 	private Action winFunction = () => {};		// function to call when the level is finished
 
 	private ParticleSystem flamethrower;		// TODO to move in a separate script at one point
+
+	private HUD hud;
+
 
 	private void Awake() {
 		ResourceManager.RegisterMainPlayer(this);
@@ -42,6 +46,8 @@ public class HeroScript : MonoBehaviour {
 
    		this.flamethrower = this.GetComponentInChildren<ParticleSystem>();
    		this.flamethrower.enableEmission = false;
+
+		this.hud = GameObject.Find ("GameManager").GetComponent<HUD>();
 	}
 
 	// Use this for initialization
@@ -73,6 +79,13 @@ public class HeroScript : MonoBehaviour {
 		    	isInvincible = false;
 		  	}
 		}
+
+		// Check if the player is under influence of drug 1 enough to render the hidden stuff
+		if (drug1Level > 5) {
+			foreach (GenericObject obj in ResourceManager.HallucinatedObjects) {
+				obj.setVisibility (true);
+			}
+		}
 	}
 
 
@@ -102,6 +115,15 @@ public class HeroScript : MonoBehaviour {
     public void AdjustHealth(int amount) {
     	character.AdjustHealth(amount);
     }
+
+	/*
+    ========================
+	AdjustDrugLevel
+    ========================
+    */
+	public void AdjustDrugLevel(int amount, int drugName) { // TODO to refactor, drugName should become an enum
+		this.drug1Level += amount;	// TODO to refactor, make it generic
+	}
 
     /*
     ========================

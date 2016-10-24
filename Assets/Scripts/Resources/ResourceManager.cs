@@ -44,7 +44,16 @@ public static class ResourceManager {
 		drug2 = drug2;
 	}
 
-    
+	/*
+    ========================
+	Hallucinated objects
+    ========================
+    */
+	private static ArrayList hallucinatedObjects = new ArrayList();
+	public static ArrayList HallucinatedObjects { get { return hallucinatedObjects; } }
+	public static void AddHallucinatedObjects(GenericObject obj) {
+		hallucinatedObjects.Add(obj);
+	}   
 
 
 

@@ -12,7 +12,8 @@ public class ButtonTest : MonoBehaviour {
 
 	}
 
-	void OnMouseDown(){
+	void OnMouseDown() {
 		ResourceManager.MainPlayer.AdjustSpeed(2.0f, true, 5.0f);
+		ResourceManager.MainPlayer.AdjustDrugLevel (10, 0); // TODO 0 to an enum corresponding to the drug
 	}
 }
