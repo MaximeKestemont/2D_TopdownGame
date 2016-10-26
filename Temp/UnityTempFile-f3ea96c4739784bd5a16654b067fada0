@@ -122,6 +122,7 @@
 'Assets/Scripts/EnemyAIScript.cs'
 'Assets/Scripts/FollowTargetScript.cs'
 'Assets/Scripts/HUD.cs'
+'Assets/Scripts/HallucinatedObject.cs'
 'Assets/Scripts/HeroScript.cs'
 'Assets/Scripts/Inventory/Inventory.cs'
 'Assets/Scripts/Items/GenericItem.cs'

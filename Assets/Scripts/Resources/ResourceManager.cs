@@ -49,9 +49,11 @@ public static class ResourceManager {
 	Hallucinated objects
     ========================
     */
+	public static int fadingDuration = 5;
+
 	private static ArrayList hallucinatedObjects = new ArrayList();
 	public static ArrayList HallucinatedObjects { get { return hallucinatedObjects; } }
-	public static void AddHallucinatedObjects(GenericObject obj) {
+	public static void AddHallucinatedObjects(HallucinatedObject obj) {
 		hallucinatedObjects.Add(obj);
 	}   
 

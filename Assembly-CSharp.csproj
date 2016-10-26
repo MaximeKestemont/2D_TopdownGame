@@ -90,8 +90,8 @@
      <Compile Include="Assets\Scripts\CharacterScript.cs" />
      <Compile Include="Assets\Scripts\EnemyAIScript.cs" />
      <Compile Include="Assets\Scripts\FollowTargetScript.cs" />
-     <Compile Include="Assets\Scripts\GenericObject.cs" />
      <Compile Include="Assets\Scripts\HUD.cs" />
+     <Compile Include="Assets\Scripts\HallucinatedObject.cs" />
      <Compile Include="Assets\Scripts\HeroScript.cs" />
      <Compile Include="Assets\Scripts\Inventory\Inventory.cs" />
      <Compile Include="Assets\Scripts\Items\GenericItem.cs" />

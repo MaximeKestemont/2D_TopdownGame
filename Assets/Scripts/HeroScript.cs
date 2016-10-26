@@ -21,7 +21,8 @@ public class HeroScript : MonoBehaviour {
  	private bool speedToRestore = false;
  	private float speedResetTimer = 1.0f;
  	private float oldSpeed;
-	public int drug1Level = 0;
+	public float drug1Level = 0.0f;
+	public int drug1DecreaseValue = 1;
 
 	private int destroyedSpiderWebs = 0;		// number of webs destroyed
  
@@ -67,6 +68,10 @@ public class HeroScript : MonoBehaviour {
 				speedToRestore = false;
 			}
 		}
+
+		if (drug1Level > 0) {
+			this.drug1Level -= Time.deltaTime * drug1DecreaseValue;
+		}
 	
 		if (isInvincible) {
 			timeSpentInvincible += Time.deltaTime;
@@ -82,9 +87,26 @@ public class HeroScript : MonoBehaviour {
 
 		// Check if the player is under influence of drug 1 enough to render the hidden stuff
 		if (drug1Level > 5) {
-			foreach (GenericObject obj in ResourceManager.HallucinatedObjects) {
-				obj.setVisibility (true);
+			foreach (HallucinatedObject obj in ResourceManager.HallucinatedObjects) {
+				if (!obj.GetVisibility ()) {
+					obj.SetVisibility (true);
+				}
+				if ( obj.GetOpacity() < 1.0f) {
+					float opacity = obj.GetOpacity() + Time.deltaTime / ResourceManager.fadingDuration;
+					obj.GetRenderer.material.color = new Color (1.0f, 1.0f, 1.0f, opacity);
+				}
 			}
+
+		} else {
+			foreach (HallucinatedObject obj in ResourceManager.HallucinatedObjects) {
+				if ( obj.GetOpacity() > 0.0f) {
+					float opacity = obj.GetOpacity() - Time.deltaTime / ResourceManager.fadingDuration;
+					obj.GetRenderer.material.color = new Color (1.0f, 1.0f, 1.0f, Mathf.Max(0.0f, opacity));
+					if (opacity < 0.1f) {
+						obj.SetVisibility (false);
+					}
+				}
+			}			
 		}
 	}
 
