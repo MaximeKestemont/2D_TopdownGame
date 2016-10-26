@@ -88,6 +88,7 @@
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\CharacterInputScript.cs" />
      <Compile Include="Assets\Scripts\CharacterScript.cs" />
+     <Compile Include="Assets\Scripts\Drug.cs" />
      <Compile Include="Assets\Scripts\EnemyAIScript.cs" />
      <Compile Include="Assets\Scripts\FollowTargetScript.cs" />
      <Compile Include="Assets\Scripts\HUD.cs" />
@@ -95,6 +96,7 @@
      <Compile Include="Assets\Scripts\HeroScript.cs" />
      <Compile Include="Assets\Scripts\Inventory\Inventory.cs" />
      <Compile Include="Assets\Scripts\Items\GenericItem.cs" />
+     <Compile Include="Assets\Scripts\Loader.cs" />
      <Compile Include="Assets\Scripts\MovingBox.cs" />
      <Compile Include="Assets\Scripts\Particles\FlameThrowerTest.cs" />
      <Compile Include="Assets\Scripts\Particles\ParticleSortingLayer.cs" />

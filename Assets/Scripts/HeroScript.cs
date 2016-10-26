@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System;
 
 public class HeroScript : MonoBehaviour {
@@ -21,8 +22,6 @@ public class HeroScript : MonoBehaviour {
  	private bool speedToRestore = false;
  	private float speedResetTimer = 1.0f;
  	private float oldSpeed;
-	public float drug1Level = 0.0f;
-	public int drug1DecreaseValue = 1;
 
 	private int destroyedSpiderWebs = 0;		// number of webs destroyed
  
@@ -69,8 +68,8 @@ public class HeroScript : MonoBehaviour {
 			}
 		}
 
-		if (drug1Level > 0) {
-			this.drug1Level -= Time.deltaTime * drug1DecreaseValue;
+		foreach ( KeyValuePair<ResourceManager.DrugEnum,Drug> drug in ResourceManager.drugs ) {
+			drug.Value.AutomaticDecrease ();
 		}
 	
 		if (isInvincible) {
@@ -85,8 +84,10 @@ public class HeroScript : MonoBehaviour {
 		  	}
 		}
 
+		// TODO move this to the update method of the corresponding drug -> need to extend the drug class with specific drug that
+		// override a DoEffect method or something like that.
 		// Check if the player is under influence of drug 1 enough to render the hidden stuff
-		if (drug1Level > 5) {
+		if (ResourceManager.drugs[ResourceManager.DrugEnum.DRUG1].drugLevel > 5) {
 			foreach (HallucinatedObject obj in ResourceManager.HallucinatedObjects) {
 				if (!obj.GetVisibility ()) {
 					obj.SetVisibility (true);
@@ -138,14 +139,6 @@ public class HeroScript : MonoBehaviour {
     	character.AdjustHealth(amount);
     }
 
-	/*
-    ========================
-	AdjustDrugLevel
-    ========================
-    */
-	public void AdjustDrugLevel(int amount, int drugName) { // TODO to refactor, drugName should become an enum
-		this.drug1Level += amount;	// TODO to refactor, make it generic
-	}
 
     /*
     ========================

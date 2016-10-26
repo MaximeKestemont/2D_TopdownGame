@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System.Collections.Generic;
 
 // This class is used to store the resources loaded, so that the same texture is not loaded twice.
 // Constants are also stored here.
@@ -36,13 +36,13 @@ public static class ResourceManager {
     Drugs
     ========================
     */
-    private static Sprite drug1, drug2;
-	public static Sprite Drug1 { get { return drug1; } }
-	public static Sprite Drug2 { get { return drug2; } }
-	public static void StoreDrugs(Sprite drug1, Sprite drug2) {
-		drug1 = drug1; 
-		drug2 = drug2;
-	}
+	public enum DrugEnum {DRUG1, DRUG2};
+	public static Dictionary<DrugEnum, Drug> drugs = new Dictionary<DrugEnum, Drug> ();
+
+
+
+
+
 
 	/*
     ========================

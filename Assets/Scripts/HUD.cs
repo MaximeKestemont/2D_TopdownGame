@@ -3,11 +3,9 @@ using System.Collections;
 
 public class HUD : MonoBehaviour {
 
-	public Sprite drug1;
-	public Sprite drug2;
 
 	public void Start () {
-		ResourceManager.StoreDrugs(drug1, drug2);
+
 		
 	}
 
