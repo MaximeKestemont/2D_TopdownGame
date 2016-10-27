@@ -36,7 +36,7 @@ public static class ResourceManager {
     Drugs
     ========================
     */
-	public enum DrugEnum {DRUG1, DRUG2};
+	public enum DrugEnum {SPEED_DRUG, DRUG2};
 	public static Dictionary<DrugEnum, Drug> drugs = new Dictionary<DrugEnum, Drug> ();
 
 

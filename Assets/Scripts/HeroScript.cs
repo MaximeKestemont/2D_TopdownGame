@@ -68,9 +68,11 @@ public class HeroScript : MonoBehaviour {
 			}
 		}
 
+		/*
 		foreach ( KeyValuePair<ResourceManager.DrugEnum,Drug> drug in ResourceManager.drugs ) {
 			drug.Value.AutomaticDecrease ();
 		}
+		*/
 	
 		if (isInvincible) {
 			timeSpentInvincible += Time.deltaTime;
@@ -87,28 +89,7 @@ public class HeroScript : MonoBehaviour {
 		// TODO move this to the update method of the corresponding drug -> need to extend the drug class with specific drug that
 		// override a DoEffect method or something like that.
 		// Check if the player is under influence of drug 1 enough to render the hidden stuff
-		if (ResourceManager.drugs[ResourceManager.DrugEnum.DRUG1].drugLevel > 5) {
-			foreach (HallucinatedObject obj in ResourceManager.HallucinatedObjects) {
-				if (!obj.GetVisibility ()) {
-					obj.SetVisibility (true);
-				}
-				if ( obj.GetOpacity() < 1.0f) {
-					float opacity = obj.GetOpacity() + Time.deltaTime / ResourceManager.fadingDuration;
-					obj.GetRenderer.material.color = new Color (1.0f, 1.0f, 1.0f, opacity);
-				}
-			}
 
-		} else {
-			foreach (HallucinatedObject obj in ResourceManager.HallucinatedObjects) {
-				if ( obj.GetOpacity() > 0.0f) {
-					float opacity = obj.GetOpacity() - Time.deltaTime / ResourceManager.fadingDuration;
-					obj.GetRenderer.material.color = new Color (1.0f, 1.0f, 1.0f, Mathf.Max(0.0f, opacity));
-					if (opacity < 0.1f) {
-						obj.SetVisibility (false);
-					}
-				}
-			}			
-		}
 	}
 
 

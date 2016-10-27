@@ -15,7 +15,6 @@ public class ButtonTest : MonoBehaviour {
 	}
 
 	void OnMouseDown() {
-		ResourceManager.MainPlayer.AdjustSpeed(2.0f, true, 5.0f);
-		ResourceManager.drugs [drugID].AdjustDrugLevel (10);
+		ResourceManager.drugs [drugID].PlayAction();
 	}
 }
