@@ -21,7 +21,7 @@ public class HeroScript : MonoBehaviour {
 	// Related to drug 1
  	private bool speedToRestore = false;
  	private float speedResetTimer = 1.0f;
- 	private float oldSpeed;
+	private float baseSpeed;
 
 	private int destroyedSpiderWebs = 0;		// number of webs destroyed
  
@@ -33,9 +33,12 @@ public class HeroScript : MonoBehaviour {
 
 
 	private void Awake() {
+
 		ResourceManager.RegisterMainPlayer(this);
 
 		this.character = this.GetComponent<CharacterScript>();
+		this.baseSpeed = character.maxSpeed;
+
 		character.SetDeathFunction( () => {
             Application.LoadLevel(Application.loadedLevelName); 
         });
@@ -62,7 +65,7 @@ public class HeroScript : MonoBehaviour {
 		if ( speedToRestore ) {
 			this.speedResetTimer -= Time.deltaTime;
 			if ( speedResetTimer < 0.0 ) {
-				character.maxSpeed = oldSpeed;
+				character.maxSpeed = this.baseSpeed;
 				speedResetTimer = 1.0f;
 				speedToRestore = false;
 			}
@@ -74,6 +77,7 @@ public class HeroScript : MonoBehaviour {
 		}
 		*/
 	
+		// Handle the invincibility of the player when he just got hit
 		if (isInvincible) {
 			timeSpentInvincible += Time.deltaTime;
 		 
@@ -86,10 +90,6 @@ public class HeroScript : MonoBehaviour {
 		  	}
 		}
 
-		// TODO move this to the update method of the corresponding drug -> need to extend the drug class with specific drug that
-		// override a DoEffect method or something like that.
-		// Check if the player is under influence of drug 1 enough to render the hidden stuff
-
 	}
 
 
@@ -99,9 +99,9 @@ public class HeroScript : MonoBehaviour {
     AdjustSpeed
     ========================
     */
+	// TODO currently a bug if used 2 times in a row -> need to remember the basis speed, the old speed
     public void AdjustSpeed(float speedPercentage, bool temporary, float duration = 0.0f) {
     	if ( temporary ) {
-    		oldSpeed = character.maxSpeed;
     		character.maxSpeed *= speedPercentage;
     		speedToRestore = true;
     		speedResetTimer = duration;

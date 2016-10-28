@@ -20,7 +20,7 @@ public class SpeedDrug : Drug {
 	========================
 	*/
 	public override void PlayEffect () {
-		if (ResourceManager.drugs[ResourceManager.DrugEnum.SPEED_DRUG].drugLevel > 5) {
+		if (this.drugLevel > 5) {
 			foreach (HallucinatedObject obj in ResourceManager.HallucinatedObjects) {
 				if (!obj.GetVisibility ()) {
 					obj.SetVisibility (true);

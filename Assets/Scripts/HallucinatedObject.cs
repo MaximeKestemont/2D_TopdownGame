@@ -14,6 +14,9 @@ public class HallucinatedObject : MonoBehaviour {
 		renderer.enabled = false;
 		collider.enabled = false;
 		ResourceManager.AddHallucinatedObjects (this);
+
+		// Set the opacity to 0
+		renderer.material.color = new Color (1.0f, 1.0f, 1.0f, 0.0f);
 	}
 	
 	// Update is called once per frame
