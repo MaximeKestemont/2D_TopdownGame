@@ -119,6 +119,7 @@
 'Assets/Scripts/CameraController.cs'
 'Assets/Scripts/CharacterInputScript.cs'
 'Assets/Scripts/CharacterScript.cs'
+'Assets/Scripts/DrugLevel.cs'
 'Assets/Scripts/Drugs/Drug.cs'
 'Assets/Scripts/Drugs/SpeedDrug.cs'
 'Assets/Scripts/EnemyAIScript.cs'
