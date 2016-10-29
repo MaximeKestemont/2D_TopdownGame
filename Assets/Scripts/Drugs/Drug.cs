@@ -10,6 +10,10 @@ public class Drug : MonoBehaviour {
 	public float drugLevel = 0.0f;
 	public int drugDecreaseValue = 1;
 
+	// treshold value for the side-effect to appear
+	public float tresholdValue = 10f;
+	public float maxValue = 100f;
+
 
 	void Update () {
 		PlayEffect ();
@@ -38,6 +42,19 @@ public class Drug : MonoBehaviour {
 
 	/*
 	========================
+	GetDrugLevel
+	========================
+	*/
+	// Action related to the drug usage
+	public float GetDrugLevel () {
+		return drugLevel;
+	}
+
+
+
+
+	/*
+	========================
 	PlayEffect
 	========================
 	*/
@@ -55,5 +72,7 @@ public class Drug : MonoBehaviour {
 	public virtual void PlayAction () {
 		// This need to be overriden in child classes.
 	}
+
+
 
 }

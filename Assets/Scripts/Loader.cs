@@ -8,7 +8,7 @@ public class Loader : MonoBehaviour {
 	public List<Drug> drugs = new List<Drug> ();
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 
 		// Add the drugs to the ResourceManager
 		foreach (Drug drug in drugs) {

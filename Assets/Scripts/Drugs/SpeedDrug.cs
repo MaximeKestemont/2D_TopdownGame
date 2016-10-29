@@ -20,7 +20,7 @@ public class SpeedDrug : Drug {
 	========================
 	*/
 	public override void PlayEffect () {
-		if (this.drugLevel > 5) {
+		if (this.drugLevel > this.tresholdValue) {
 			foreach (HallucinatedObject obj in ResourceManager.HallucinatedObjects) {
 				if (!obj.GetVisibility ()) {
 					obj.SetVisibility (true);
