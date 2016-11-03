@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI; 
 
 public class DrugLevelBar : MonoBehaviour {
 
@@ -15,6 +16,7 @@ public class DrugLevelBar : MonoBehaviour {
 	private Drug drug;
 
 	private RectTransform borderRect;
+	private bool isBlinking = false;
 
 	void Start () {
 		// TODO should fill the healthBar and treshold automatically (GetCompChildren etc.)
@@ -32,8 +34,34 @@ public class DrugLevelBar : MonoBehaviour {
 	}
 
 	void Update () {
+		// Update the bar rendering
 		float currentLevel = drug.GetDrugLevel () / drug.maxValue;
-		healthBar.transform.localScale = new Vector3 (currentLevel * borderRect.localScale.x, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
+		healthBar.transform.localScale = new Vector3 (
+			currentLevel * borderRect.localScale.x, 
+			healthBar.transform.localScale.y, 
+			healthBar.transform.localScale.z
+		);
+
+		// Update the blinking
+		Blinking ();
+
+	}
+
+	void Blinking() {
+		if ( drug.GetDrugLevel () > drug.tresholdValue ) {
+			if (!isBlinking) {
+				isBlinking = true;
+				InvokeRepeating ("ToggleState", 0, 0.2f);
+			}
+		} else {
+			isBlinking = false;
+			CancelInvoke ();
+			healthBar.GetComponent<Image> ().enabled = true;
+		}
+	}
+
+	void ToggleState() {
+		healthBar.GetComponent<Image> ().enabled = !healthBar.GetComponent<Image> ().enabled;
 	}
 		
 }
