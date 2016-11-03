@@ -4,6 +4,9 @@ using System.Collections;
 [RequireComponent(typeof(CharacterScript))]
 public class CharacterInputScript : MonoBehaviour {
     
+	public KeyCode flamethrowerKey = KeyCode.Space;
+	public KeyCode drug1Key = KeyCode.A;
+
     private CharacterScript character;
     private Camera mainCamera;
  
@@ -40,6 +43,18 @@ public class CharacterInputScript : MonoBehaviour {
             this.heading.Normalize();
         }
         */
+
+		// ------------------ DRUGS -------------------------
+		if (Input.GetButtonDown (drug1Key.ToString())) {
+			Debug.Log ("wtf");
+			ResourceManager.drugs [ResourceManager.DrugEnum.SPEED_DRUG].PlayAction ();
+		}
+		// ------------------ ATTACK ------------------------
+		if ( Input.GetButton(flamethrowerKey.ToString()) ) {    // configured in the Input Manager
+			ResourceManager.MainPlayer.SetFlamethrowerEmitter(true);
+		} else {
+			ResourceManager.MainPlayer.SetFlamethrowerEmitter(false);
+		}
     }
 
     /*
@@ -65,13 +80,5 @@ public class CharacterInputScript : MonoBehaviour {
         this.heading = movement.normalized;
  
         character.Move(heading);
-
-        // ------------------ ATTACK ------------------------
-        if ( Input.GetButton("Space") ) {    // configured in the Input Manager
-            ResourceManager.MainPlayer.SetFlamethrowerEmitter(true);
-        } else {
-            ResourceManager.MainPlayer.SetFlamethrowerEmitter(false);
-        } 
-
     }
 }

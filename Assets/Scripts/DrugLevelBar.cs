@@ -44,7 +44,6 @@ public class DrugLevelBar : MonoBehaviour {
 
 		// Update the blinking
 		Blinking ();
-
 	}
 
 	void Blinking() {

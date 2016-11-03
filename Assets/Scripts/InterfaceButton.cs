@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ButtonTest : MonoBehaviour {
+public class InterfaceButton : MonoBehaviour {
 
 	public ResourceManager.DrugEnum drugID;
 

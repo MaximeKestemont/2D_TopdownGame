@@ -173,7 +173,7 @@ public class HeroScript : MonoBehaviour {
 
     /*
     ========================
-    SetFinishLevelFunction
+	SetFlamethrowerEmitter
     ========================
     */
 	public void SetFlamethrowerEmitter(Boolean b) {

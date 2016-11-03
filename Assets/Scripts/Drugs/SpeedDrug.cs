@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class SpeedDrug : Drug {
 
+	public float speedIncrease = 1.5f;
+
 	/*
 	========================
 	PlayAction
 	========================
 	*/
 	public override void PlayAction () {
-		ResourceManager.MainPlayer.AdjustSpeed(2.0f, true, 5.0f);
+		ResourceManager.MainPlayer.AdjustSpeed(speedIncrease, true, 5.0f);
 		this.AdjustDrugLevel (10);
 	}
 

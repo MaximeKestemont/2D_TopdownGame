@@ -84,7 +84,6 @@
      <Compile Include="Assets\InventoryMaster\Scripts\Item\SlotCover.cs" />
      <Compile Include="Assets\InventoryMaster\Scripts\Item\SplitItem.cs" />
      <Compile Include="Assets\InventoryMaster\Scripts\Tooltip\Tooltip.cs" />
-     <Compile Include="Assets\Scripts\ButtonTest.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\CharacterInputScript.cs" />
      <Compile Include="Assets\Scripts\CharacterScript.cs" />
@@ -96,6 +95,7 @@
      <Compile Include="Assets\Scripts\HUD.cs" />
      <Compile Include="Assets\Scripts\HallucinatedObject.cs" />
      <Compile Include="Assets\Scripts\HeroScript.cs" />
+     <Compile Include="Assets\Scripts\InterfaceButton.cs" />
      <Compile Include="Assets\Scripts\Inventory\Inventory.cs" />
      <Compile Include="Assets\Scripts\Items\GenericItem.cs" />
      <Compile Include="Assets\Scripts\Loader.cs" />
