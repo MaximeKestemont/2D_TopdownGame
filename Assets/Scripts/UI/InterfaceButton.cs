@@ -3,6 +3,8 @@ using System.Collections;
 
 public class InterfaceButton : MonoBehaviour {
 
+	// TODO DEPECRATED, only there to show how button can also be done
+
 	public ResourceManager.DrugEnum drugID;
 
 	// Use this for initialization

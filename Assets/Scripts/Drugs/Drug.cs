@@ -7,6 +7,9 @@ public class Drug : MonoBehaviour {
 	public ResourceManager.DrugEnum key;
 	public Sprite sprite;
 
+	// Cooldown for taking this drug again
+	public float drugCooldown = 1.0f; 
+
 	public float drugLevel = 0.0f;
 	public int drugDecreaseValue = 1;
 

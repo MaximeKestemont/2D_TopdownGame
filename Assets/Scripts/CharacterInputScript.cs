@@ -46,9 +46,9 @@ public class CharacterInputScript : MonoBehaviour {
 
 		// ------------------ DRUGS -------------------------
 		if (Input.GetButtonDown (drug1Key.ToString())) {
-			Debug.Log ("wtf");
 			ResourceManager.drugs [ResourceManager.DrugEnum.SPEED_DRUG].PlayAction ();
 		}
+
 		// ------------------ ATTACK ------------------------
 		if ( Input.GetButton(flamethrowerKey.ToString()) ) {    // configured in the Input Manager
 			ResourceManager.MainPlayer.SetFlamethrowerEmitter(true);
