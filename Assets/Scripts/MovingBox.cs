@@ -39,7 +39,9 @@ public class MovingBox : MonoBehaviour {
     ========================
     */
 	private void OnCollisionEnter2D(Collision2D other) {
- 
+		Debug.Log ("COLLISION");
+		Debug.Log ("Object : " + other.gameObject.tag);
+		Debug.Log ("isMoving : " + isMoving );
 	    if (other.gameObject.tag == "Player" && isMoving == false) {
 
 	        Vector2 boxPosition =  this.transform.position;
@@ -52,16 +54,20 @@ public class MovingBox : MonoBehaviour {
 	        if ( Mathf.Abs(diffX) > Mathf.Abs(diffY)) {
 	        	if ( diffX > 0 ) {		// if diffX > 0, this means that the player is on the left side of the box
 	        		target = new Vector2(boxPosition.x + distanceX, boxPosition.y);
+					Debug.Log ("RIGHT");
 	        	} else {
 					target = new Vector2(boxPosition.x - distanceX, boxPosition.y);
+					Debug.Log ("LEFT");
 	        	}
 	        	this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY; 
 
 	        } else {
 	        	if ( diffY > 0 ) {		// if diffY > 0, this means that the player is on the top side of the box
 	        		target = new Vector2(boxPosition.x, boxPosition.y + distanceY);
+					Debug.Log ("BOTTOM");
 	        	} else {
 					target = new Vector2(boxPosition.x, boxPosition.y - distanceY);
+					Debug.Log ("UP");
 	        	}
 	        	this.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionX; 
 	        }
@@ -72,7 +78,7 @@ public class MovingBox : MonoBehaviour {
 	    // If colliding with something else than the player, stop moving.
 	    if (other.gameObject.tag != "Player") {
 
-	    	target = this.transform.position;
+			//target = this.transform.position;
 	    	isMoving = false;
 	    	this.GetComponent<Rigidbody2D>().constraints = 
 	    		RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY; 

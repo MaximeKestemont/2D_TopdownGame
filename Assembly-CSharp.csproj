@@ -105,6 +105,7 @@
      <Compile Include="Assets\Scripts\Resources\ResourceManager.cs" />
      <Compile Include="Assets\Scripts\Scenes\StartScene.cs" />
      <Compile Include="Assets\Scripts\Scenes\WinScene.cs" />
+     <Compile Include="Assets\Scripts\TestBox.cs" />
      <Compile Include="Assets\Scripts\TimedSpawner.cs" />
      <Compile Include="Assets\Scripts\UI\DrugButtonCooldown.cs" />
      <Compile Include="Assets\Scripts\UI\InterfaceButton.cs" />
